@@ -1,14 +1,11 @@
 const express = require('express');
 const mysql = require('mysql');
-const envParser = require('./utils/env');
-const cron = require('node-cron');
+const cron = require('node-cron'); //Esto no va a andar en el regimen free porque el serve se duerme ver workarounds
 
 //importando las rutas
 const login = require('./routes/login');
 const api = require('./routes/api.v0');
 
-//trayendo las variables de entorno
-const env = envParser();
 
 //creando la conección a la base de datos
 //puede que esto no sea escalable con múltiples usuarios porque estarían usando todos la misma conexión.
@@ -16,10 +13,10 @@ const env = envParser();
 //si es así modificar para que cada usuario tenga su propia conección a la base de datos
 
 const db = mysql.createConnection({
-    host : env.DB_HOST,
-    user : env.DB_USUARIO,
-    password: env.DB_PASS,
-    database: env.DB_BASE,
+    host : process.env.DB_HOST,
+    user : process.env.DB_USUARIO,
+    password: process.env.DB_PASS,
+    database: process.env.DB_BASE,
     flags: 'MULTI_STATEMENTS'
 });
 
