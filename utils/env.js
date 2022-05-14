@@ -5,7 +5,7 @@ const path = require('path');
 
 const envParser = () => {
     const envObj = {};
-    const texto = fs.readFileSync(path.join(__dirname, '..', '..', '.env')).toString('utf-8');
+    const texto = fs.readFileSync(path.join(__dirname, '..', '.env')).toString('utf-8');
     const lineas = texto.split('\n');
     lineas.forEach((linea) => {
         let par = linea.split('=');
